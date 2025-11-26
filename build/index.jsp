@@ -5,8 +5,8 @@
 </head>
 <body>
     <form action="login.jsp" method="post">
-        <input type="text" name="user" placeholder="Utilisateur">
-        <input type="password" name="pwd" placeholder="Mot de passe">
+        <p>User : <input type="text" name="user" placeholder="Utilisateur"></p>
+        <p>Password : <input type="password" name="pwd" placeholder="Mot de passe"></p>
         <button type="submit">Connexion</button>
     </form>
     

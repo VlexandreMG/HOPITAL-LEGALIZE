@@ -10,6 +10,8 @@ try {
     if(utilisateur != null) {  
         session.setAttribute("utilisateur", utilisateur);
         response.sendRedirect("accueil.jsp");
+        //j'aimerais prendre le utilisateur 
+        //l'envoyer à accueil.html 
     }
 } catch (Exception e) {
     response.sendRedirect("index.jsp?error=" + java.net.URLEncoder.encode(e.getMessage(), "UTF-8"));
