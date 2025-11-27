@@ -8,6 +8,7 @@ Vector<MedOrdonnance> ordonnancesMere = new Vector<>();
 String idConsultation = request.getParameter("idConsultation");
 session.setAttribute("idConsultation", idConsultation);
 ordonnancesMere = MedOrdonnanceDAO.getOrdonnanceByIdCLient(idConsultation);
+Client iencli= ClientDAO.getClientByIdConsultation(idConsultation);
 %>
 
 <!DOCTYPE html>
@@ -19,7 +20,7 @@ ordonnancesMere = MedOrdonnanceDAO.getOrdonnanceByIdCLient(idConsultation);
 </head>
 <body>
     <%= idConsultation %>
-    <h2>Ordonnance pour le patient : </h2>
+    <h2>Ordonnance pour le patient : <%= iencli.getNom() %> </h2>
 
     <h2>Test des ordonnances</h2>
 <p>ID Consultation: <%= idConsultation %></p>
