@@ -36,7 +36,7 @@ listeConsultations2 = MedConsultationDAO.getByIdMedecin(medecin.getMatricule());
     for(MedConsultation consultation2 : listeConsultations2) { 
     %>
     <tr>
-        <form action="detailconsultation.jsp" method="post">
+        <form action="ordonnance.jsp" method="post">
             <td><%= consultation2.getDaty() %></td>
             <td><%= consultation2.getDescription() %></td>
             <td><%= consultation2.getHeureArrivee() %></td>
