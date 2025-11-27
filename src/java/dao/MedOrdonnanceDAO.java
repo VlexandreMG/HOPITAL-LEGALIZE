@@ -330,6 +330,38 @@ public class MedOrdonnanceDAO {
     return ordonnance;
 }
 
+public static Vector<MedOrdonnance> getOrdonnanceByIdCLient(String idClient) {
+        Vector<MedOrdonnance> ordonnances = new Vector<>();
+        String sql = "SELECT MO.* FROM MED_ORDONNANCE MO JOIN MED_CONSULTATION MC ON MO.ID_CONSULTATION = MC.ID WHERE MC.PATIENT = ? ORDER BY MO.ID DESC";
+        java.sql.Connection con = null;
+        java.sql.PreparedStatement ps = null;
+        java.sql.ResultSet rs = null;
+        try {
+            con = DBconnexion.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, idClient);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                MedOrdonnance ordonnance = new MedOrdonnance();
+                ordonnance.setId(rs.getString("ID"));
+                ordonnance.setIdConsultation(rs.getString("ID_CONSULTATION"));
+                ordonnance.setIdMedecin(rs.getString("IDMEDECIN"));
+                ordonnance.setNbJours(rs.getInt("NB_JOURS"));
+                ordonnance.setObservation(rs.getString("OBSERVATION_SOINS"));
+                ordonnances.add(ordonnance);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) try { rs.close(); } catch (Exception ignore) {}
+            if (ps != null) try { ps.close(); } catch (Exception ignore) {}
+            if (con != null) try { con.close(); } catch (Exception ignore) {}
+        }
+        return ordonnances;
+    }
+
     public static Vector<MedOrdonnance> getAllOrdonnances() {
         Vector<MedOrdonnance> ordonnances = new Vector<>();
         String sql = "SELECT * FROM MED_ORDONNANCE ORDER BY ID DESC";
