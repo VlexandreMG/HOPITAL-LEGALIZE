@@ -6,16 +6,18 @@ public class MedOrdonnance {
     private String idMedecin;
     private int nbJours;
     private String observation;
+    private java.sql.Date daty;
 
 
     public MedOrdonnance() {}
 
-    public MedOrdonnance(String id, String idConsultation, String idMedecin, int nbJours, String observation) {
+    public MedOrdonnance(String id, String idConsultation, String idMedecin, int nbJours, String observation, java.sql.Date daty) {
         this.id = id;
         this.idConsultation = idConsultation;
         this.idMedecin = idMedecin;
         this.nbJours = nbJours;
         this.observation = observation;
+        this.daty = daty;
     }
 
     public String getId() { return id; }
@@ -32,4 +34,7 @@ public class MedOrdonnance {
 
     public String getObservation() { return observation; }
     public void setObservation(String observation) { this.observation = observation; }
+
+    public java.sql.Date getDaty() { return daty;}
+    public void setDaty(java.sql.Date daty) { this.daty = daty;}
 }

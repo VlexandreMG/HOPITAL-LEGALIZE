@@ -8,26 +8,44 @@ import utils.*;
 
 public class MedOrdonnanceDAO {
 
-    public static String createOrdonnance(MedOrdonnance ordonnance) throws Exception {
-        String sql = "INSERT INTO MED_ORDONNANCE (ID, ID_CONSULTATION, IDMEDECIN, NB_JOURS, OBSERVATION_SOINS) VALUES (?, ?, ?, ?, ?)";
+    public static String addOrdonnance(MedOrdonnance ordonnance) throws Exception {
+    String sql = "INSERT INTO MED_ORDONNANCE (ID, ID_CONSULTATION, IDMEDECIN, NB_JOURS, OBSERVATION_SOINS) VALUES (?, ?, ?, ?, ?)";
 
-        java.sql.Connection con = null;
-        java.sql.PreparedStatement ps = null;
-        try {
-            con = DBconnexion.getConnection();
-            ps = con.prepareStatement(sql);
+    java.sql.Connection con = null;
+    java.sql.PreparedStatement ps = null;
+    try {
+        con = DBconnexion.getConnection();
+        ps = con.prepareStatement(sql);
 
-            String generatedId = generateOrdonnanceId(con);
-            ps.setString(1, generatedId);
-            ps.setString(2, ordonnance.getIdConsultation());
-            ps.setString(3, ordonnance.getIdMedecin());
-            ps.setInt(4, ordonnance.getNbJours());
-            ps.setString(5, ordonnance.getObservation());
+        String generatedId = generateOrdonnanceId(con);
+        
+        // DEBUG CRITIQUE
+        System.err.println("=== DEBUG INSERTION ORDONNANCE ===");
+        System.err.println("ID Généré: " + generatedId);
+        System.err.println("ID Consultation: " + ordonnance.getIdConsultation());
+        System.err.println("ID Médecin: " + ordonnance.getIdMedecin());
+        System.err.println("NB Jours: " + ordonnance.getNbJours());
+        System.err.println("Observation: " + ordonnance.getObservation());
+        
+        ps.setString(1, generatedId);
+        ps.setString(2, ordonnance.getIdConsultation());
+        ps.setString(3, ordonnance.getIdMedecin());
+        ps.setInt(4, ordonnance.getNbJours());
+        ps.setString(5, ordonnance.getObservation());
 
-            int updated = ps.executeUpdate();
-            return updated > 0 ? generatedId : null;
-        } finally {
-            if (ps != null)
+        int updated = ps.executeUpdate(); // ← ERREUR ICI
+        return updated > 0 ? generatedId : null;
+        
+    } catch (SQLException e) {
+        // AFFICHER L'ERREUR COMPLÈTE
+        System.err.println("ERREUR SQL DÉTAILLÉE:");
+        System.err.println("Message: " + e.getMessage());
+        System.err.println("Code erreur: " + e.getErrorCode());
+        System.err.println("SQL State: " + e.getSQLState());
+        throw e;
+    } finally {
+        // ... fermeture des ressources
+        if (ps != null)
                 try {
                     ps.close();
                 } catch (Exception ignore) {
@@ -37,8 +55,8 @@ public class MedOrdonnanceDAO {
                     con.close();
                 } catch (Exception ignore) {
                 }
-        }
     }
+}
 
     public static boolean addMedicament(MedOrdonnanceFille medicament) throws Exception {
         String sql = "INSERT INTO MED_ORDONNANCE_FILLE (ID, IDORDONNANCE, IDMEDICAMENT, POSOLOGIE, QUANTITE, UNITE, NB_JOURS, TAUXPRISEENCHARGE, REMARQUE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";

@@ -7,6 +7,7 @@
 List<MedConsultation> listeConsultations2 = new ArrayList<>(); 
 Users utilisateur = (Users) session.getAttribute("utilisateur");
 Medmedecin medecin = MedmedecinDAO.getByIdUser(utilisateur.getIdUser());
+session.setAttribute("medecin", medecin);
 listeConsultations2 = MedConsultationDAO.getByIdMedecin(medecin.getMatricule());
 %>
 
@@ -18,7 +19,7 @@ listeConsultations2 = MedConsultationDAO.getByIdMedecin(medecin.getMatricule());
 <body>
     <h2>Bienvenue sur la page d'accueil , <%= medecin.getNom() %> <%= medecin.getPrenom() %></h2>
     <h3>Que souhaitez-vous faire ?</h3> 
-    <a href="consultation.jsp">Voir les consultations</a>
+    <a href="CreateConsultation.jsp">Ajouter une consultation</a>
     <a href="inventaire.jsp">Faire l'inventaire</a>
 
     <hr width="100%" size="2" color="black">
