@@ -19,7 +19,7 @@ listeConsultations2 = MedConsultationDAO.getByIdMedecin(medecin.getMatricule());
 <body>
     <h2>Bienvenue sur la page d'accueil , <%= medecin.getNom() %> <%= medecin.getPrenom() %></h2>
     <h3>Que souhaitez-vous faire ?</h3> 
-    <a href="CreateConsultation.jsp">Ajouter une consultation</a>
+    <a href="createClient.jsp">Ajouter une consultation</a>
     <a href="inventaire.jsp">Faire l'inventaire</a>
 
     <hr width="100%" size="2" color="black">

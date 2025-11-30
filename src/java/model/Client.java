@@ -3,8 +3,17 @@ package model;
 public class Client {
     String id;
     String nom;
+    String telephone;
 
     public Client() {
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public String getId() {

@@ -15,7 +15,7 @@ public class MedOrdonnanceFille {
     }
 
     public MedOrdonnanceFille(String id, String idOrdonnance, String idMedicament, String posologie,
-            int quantite, String unite, int nbJours, double tauxPriseEnCharge, String remarque) {
+        int quantite, String unite, int nbJours, double tauxPriseEnCharge, String remarque) {
         this.id = id;
         this.idOrdonnance = idOrdonnance;
         this.idMedicament = idMedicament;

@@ -15,12 +15,12 @@ public class DBconnexion {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection(url, user, password);
-            System.out.println(" Connexion réussie à Oracle !");
+            //System.out.println(" Connexion réussie à Oracle !");
         } catch (ClassNotFoundException e) {
-            System.out.println("introuvable !");
+            //System.out.println("introuvable !");
             e.printStackTrace();
         } catch (SQLException e) {
-            System.out.println("erreur de connexion à la base Oracle !");
+            //System.out.println("erreur de connexion à la base Oracle !");
             e.printStackTrace();
         }
         return conn;

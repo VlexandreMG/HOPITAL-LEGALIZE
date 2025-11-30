@@ -40,13 +40,13 @@ public class AddOrdonnance extends HttpServlet {
 
             MedOrdonnance ordonnance = new MedOrdonnance();
             ordonnance.setIdConsultation(consultation.split(" - ")[0]);
-            System.out.println("Ordonnance Consultation ID: " + ordonnance.getIdConsultation());
+            //System.out.println("Ordonnance Consultation ID: " + ordonnance.getIdConsultation());
             ordonnance.setIdMedecin(medecin.getMatricule());
-            System.out.println("Ordonnance Medecin ID: " + ordonnance.getIdMedecin());
+            //System.out.println("Ordonnance Medecin ID: " + ordonnance.getIdMedecin());
             ordonnance.setDaty(date);
-            System.out.println("Ordonnance Date: " + ordonnance.getDaty());
+            //System.out.println("Ordonnance Date: " + ordonnance.getDaty());
             ordonnance.setNbJours(duree);
-            System.out.println("Ordonnance Duration: " + ordonnance.getNbJours());
+            //System.out.println("Ordonnance Duration: " + ordonnance.getNbJours());
 
             String idOrdonnance = MedOrdonnanceDAO.addOrdonnance(ordonnance);
             if (idOrdonnance == null) {
