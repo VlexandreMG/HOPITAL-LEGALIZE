@@ -108,7 +108,7 @@ public class ClientDAO {
         
         while (rs.next()) {
             String id = rs.getString("ID");
-            System.err.println("ID examiné: " + id);
+            //System.err.println("ID examiné: " + id);
             
             if (id.startsWith("CLI")) {
                 String numbers = id.substring(3);
@@ -137,10 +137,10 @@ public class ClientDAO {
         int nextNum = maxNumber + 1;
         String newId = "CLI" + String.format("%06d", nextNum);
         
-        System.err.println("=== DEBUG GENERATE ID ===");
-        System.err.println("MAX numérique trouvé: " + maxNumber);
-        System.err.println("NOUVEL ID généré: " + newId);
-        System.err.println("=== FIN DEBUG ===");
+        // System.err.println("=== DEBUG GENERATE ID ===");
+        // System.err.println("MAX numérique trouvé: " + maxNumber);
+        // System.err.println("NOUVEL ID généré: " + newId);
+        // System.err.println("=== FIN DEBUG ===");
         
         return newId;
         

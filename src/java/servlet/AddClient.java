@@ -19,6 +19,7 @@ public class AddClient extends HttpServlet {
             client.setNom(nom);
             client.setTelephone(telephone);
             ClientDAO.addClient(client);
+            response.sendRedirect("createConsultation.jsp");
         } catch (Exception e) {
             throw new ServletException("Erreur lors de l'ajout du client", e);
         }
