@@ -13,11 +13,13 @@ public class AddClient extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            HttpSession session = request.getSession();
             String nom = request.getParameter("nom");
             String telephone = request.getParameter("telephone");
             Client client = new Client();
             client.setNom(nom);
             client.setTelephone(telephone);
+            session.setAttribute("client", client);
             ClientDAO.addClient(client);
             response.sendRedirect("createConsultation.jsp");
         } catch (Exception e) {

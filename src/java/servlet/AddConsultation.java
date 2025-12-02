@@ -15,6 +15,8 @@ public class AddConsultation extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             Medmedecin medecin = (Medmedecin) session.getAttribute("medecin");
+            Client client = (Client) session.getAttribute("client");
+            System.err.println("Client id : " + client.getId());
 
             String id = MedConsultationDAO.generateId();
             java.sql.Date daty = java.sql.Date.valueOf(request.getParameter("daty"));
@@ -27,7 +29,7 @@ public class AddConsultation extends HttpServlet {
             consultation.setDescription(description);
             consultation.setHeureArrivee(heureArrivee);
             consultation.setHeureDepart(heureDepart);
-            consultation.setPatient(id);
+            consultation.setPatient(client.getId());
             consultation.setIdMedecin(medecin.getId());
             MedConsultationDAO.addConsultation(consultation);
             response.getWriter().println("Consultation ajoutée avec succès !");
