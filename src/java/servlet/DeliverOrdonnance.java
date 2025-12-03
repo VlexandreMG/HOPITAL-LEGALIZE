@@ -36,13 +36,13 @@ public class DeliverOrdonnance extends HttpServlet {
                     java.sql.Date.valueOf("2024-06-20"));
             if (idvente != null) {
                 response.getWriter().println("Vente créée (" + idvente + ") à partir de l'ordonnance " + idOrdonnance);
-                // String mvt = Mvt_stockDAO.createMvtFromVente(idvente);
-                // if (mvt != null) {
-                //     response.getWriter().println("Mouvement de stock créé (" + mvt + ") pour la vente " + idvente);
-                // } else {
-                //     response.getWriter()
-                //             .println("Erreur lors de la création du mouvement de stock pour la vente " + idvente);
-                // }
+                String mvt = Mvt_stockDAO.createMvtFromVente(idvente);
+                if (mvt != null) {
+                    response.getWriter().println("Mouvement de stock créé (" + mvt + ") pour la vente " + idvente);
+                } else {
+                    response.getWriter()
+                            .println("Erreur lors de la création du mouvement de stock pour la vente " + idvente);
+                }
             } else {
                 response.getWriter().println("Erreur lors de la création de la vente");
             }
