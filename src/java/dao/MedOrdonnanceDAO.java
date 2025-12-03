@@ -381,6 +381,7 @@ public static Vector<MedOrdonnance> getOrdonnanceByIdCLient(String idClient) {
     }
 
     public static Vector<MedOrdonnance> getAllOrdonnances() {
+        //int count = 0;
         Vector<MedOrdonnance> ordonnances = new Vector<>();
         String sql = "SELECT * FROM MED_ORDONNANCE ORDER BY ID DESC";
         java.sql.Connection con = null;
@@ -388,9 +389,14 @@ public static Vector<MedOrdonnance> getOrdonnanceByIdCLient(String idClient) {
         java.sql.ResultSet rs = null;
         try {
             con = DBconnexion.getConnection();
+            // System.out.println("Connexion réussie à la base de données \n");
+
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
+                // count++;
+                // System.out.println("Ligne " + count + " - ID: " + rs.getString("ID") + "\n");
+
                 MedOrdonnance ordonnance = new MedOrdonnance();
                 ordonnance.setId(rs.getString("ID"));
                 ordonnance.setIdConsultation(rs.getString("ID_CONSULTATION"));
@@ -399,6 +405,7 @@ public static Vector<MedOrdonnance> getOrdonnanceByIdCLient(String idClient) {
                 ordonnance.setObservation(rs.getString("OBSERVATION_SOINS"));
                 ordonnances.add(ordonnance);
             }
+            // System.out.println("Total lignes récupérées: " + count +"\n");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {

@@ -60,7 +60,11 @@
             </td>
             <td>
                 <a href="ordonnanceView.jsp?id=<%= ord.getId() %>">Détails</a>
-                <button onclick="openLivraisonModal('<%= ord.getId() %>')">Livraison</button>
+
+                <form action="livrerOrdonnance" method="post" style="display: inline;">
+                    <input type="hidden" name="idOrdonnance" value="<%= ord.getId() %>">
+                    <input type="submit" value="Livraison">
+                </form>
             </td>
         </tr>
         <% } %>

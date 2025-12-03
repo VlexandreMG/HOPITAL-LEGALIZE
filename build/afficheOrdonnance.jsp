@@ -19,7 +19,7 @@
     try {
         // Utiliser la méthode DAO pour récupérer les ordonnances
         ordonnances = MedOrdonnanceDAO.getAllOrdonnances();
-        System.out.println("Nombre d'ordonnances récupérées : " + ordonnances.size());
+        //System.out.println("Nombre d'ordonnances récupérées : " + ordonnances.size());
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -60,7 +60,11 @@
             </td>
             <td>
                 <a href="ordonnanceView.jsp?id=<%= ord.getId() %>">Détails</a>
-                <button onclick="openLivraisonModal('<%= ord.getId() %>')">Livraison</button>
+
+                <form action="livrerOrdonnance" method="post" style="display: inline;">
+                    <input type="hidden" name="idOrdonnance" value="<%= ord.getId() %>">
+                    <input type="submit" value="Livraison">
+                </form>
             </td>
         </tr>
         <% } %>
