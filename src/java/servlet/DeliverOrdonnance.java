@@ -35,10 +35,10 @@ public class DeliverOrdonnance extends HttpServlet {
             String idvente = VenteDAO.createVenteFromOrdonnance(idOrdonnance.trim(),
                     java.sql.Date.valueOf("2024-06-20"));
             if (idvente != null) {
-                response.getWriter().println("Vente créée (" + idvente + ") à partir de l'ordonnance " + idOrdonnance);
+                response.getWriter().println("Vente créée (" + idvente + ") à partir de l'ordonnance " + idOrdonnance + "\n");
                 String mvt = Mvt_stockDAO.createMvtFromVente(idvente);
                 if (mvt != null) {
-                    response.getWriter().println("Mouvement de stock créé (" + mvt + ") pour la vente " + idvente);
+                    response.getWriter().println("Mouvement de stock créé (" + mvt + ") pour la vente " + idvente + "\n");
                 } else {
                     response.getWriter()
                             .println("Erreur lors de la création du mouvement de stock pour la vente " + idvente);

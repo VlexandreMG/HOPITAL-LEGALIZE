@@ -26,14 +26,14 @@ public class DBconnexion {
         return conn;
     }
 
-    public static void main(String[] args) throws Exception {
+    // public static void main(String[] args) throws Exception {
        
-        Connection c = getConnection();
-       if (c != null) {
-           System.out.println("Connexion établie avec succès.");
-       } else {
-           System.out.println("Échec de la connexion.");
-       }
+    //     Connection c = getConnection();
+    //    if (c != null) {
+    //        System.out.println("Connexion établie avec succès.");
+    //    } else {
+    //        System.out.println("Échec de la connexion.");
+    //    }
 
-    }
+    // }
 }

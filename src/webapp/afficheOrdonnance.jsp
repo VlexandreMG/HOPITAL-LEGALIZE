@@ -1,6 +1,6 @@
 <%@ page import="java.util.Vector" %>
 <%@ page import="model.MedOrdonnance" %>
-<%@ page import="dao.MedOrdonnanceDAO" %>
+<%@ page import="dao.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -14,6 +14,8 @@
 <body>
 
 <%
+    int valiny = Mvt_stockDAO.getDifferenceByIdProduit("IG000239");
+    System.err.println("Ilay difference : "+ valiny);
     // Récupérer toutes les ordonnances depuis la base de données
     Vector<MedOrdonnance> ordonnances = new Vector<>();
     try {

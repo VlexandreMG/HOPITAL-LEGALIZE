@@ -1,13 +1,13 @@
 package dao;
 
-import java.sql.Date;
-import java.util.Vector;
-import dao.VenteDAO;
-import model.Vente_detail;
-import model.Vente;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import model.Vente;
+import model.Vente_detail;
 import utils.*;
 
 public class Mvt_stockDAO {
@@ -179,6 +179,42 @@ public class Mvt_stockDAO {
             }
         }
     }
+
+    public static int getDifferenceByIdProduit(String idProduit) throws Exception,SQLException {
+        int difference = 0;
+
+        String sqlNormal = """
+        SELECT SUM(ENTREE) AS se, SUM(SORTIE) AS ss
+        FROM MVTSTOCKFILLE
+        WHERE IDPRODUIT = ?
+    """;
+
+        try (Connection conn = DBconnexion.getConnection()) {
+
+            // System.out.println("=== DEBUG SOMME MOUVEMENT ===");
+            // System.out.println("ID PRODUIT = " + idProduit);
+
+            // ----- 1️⃣ Somme normale -----
+            int entreeNormal = 0;
+            int sortieNormal = 0;
+
+            try (PreparedStatement ps = conn.prepareStatement(sqlNormal)) {
+                ps.setString(1, idProduit);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    entreeNormal = rs.getInt("se");
+                    sortieNormal = rs.getInt("ss");
+                    difference = entreeNormal - sortieNormal;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return difference;
+    }
+
 
     public static void main(String[] args) {
         String idVente = "VNT000000003625";
