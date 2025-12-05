@@ -14,8 +14,9 @@
 <body>
 
 <%
-    int valiny = Mvt_stockDAO.getDifferenceByIdProduit("IG000239");
-    System.err.println("Ilay difference : "+ valiny);
+    // int valiny = Mvt_stockDAO.getDifferenceByIdProduit("IG000239");
+    // System.err.println("Ilay difference : "+ valiny);
+    
     // Récupérer toutes les ordonnances depuis la base de données
     Vector<MedOrdonnance> ordonnances = new Vector<>();
     try {
